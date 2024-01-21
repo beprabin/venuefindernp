@@ -53,7 +53,7 @@
 
       <div class="d-flex">
       <div class="collapse navbar-collapse mr-2" id="navbarText">
-        <p>Welcome to Dashboard <?php echo $_SESSION['email']; ?></p>  
+        <p>Welcome to Dashboard <?php echo $_SESSION['owner_id']; ?></p>  
       </div>
       </div>
     </div>
