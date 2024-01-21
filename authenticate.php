@@ -11,6 +11,9 @@ mysqli_close($conn);
 if(mysqli_num_rows($result)!=0){
     session_start();
     $_SESSION['owner_id']=$user;
+    while($row = mysqli_fetch_assoc($result)){
+        $_SESSION['userid'] = $row['owner_id'];
+    }
     header("Location: provider/dashboard.php");
     exit();
 }

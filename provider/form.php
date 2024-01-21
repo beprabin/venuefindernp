@@ -14,7 +14,7 @@
     $category=$_POST['categories'];
     $latitude=$_POST['latitude'];
     $longitude=$_POST['longitude'];
-
+    $user_id = $_SESSION['userid'];
 
 
     // $insert_venue="insert into ven (venue_name,location,
@@ -44,10 +44,10 @@
         
         //  echo $insert_venue ; exit; 
         $insert_venue="insert into ven (venue_name,location,
-        capacity,price,contact,description,categories,latitude,longitude, image)
+        capacity,price,contact,description,categories,latitude,longitude, image,owner_id)
          values ('$venue_name','$location','$capacity',
          '$price','$contact','$description','$category','$latitude',
-         '$longitude', '$image')";   
+         '$longitude', '$image','$user_id')";   
         $result_query=mysqli_query($conn,$insert_venue);
         if($result_query){
             echo "<script>alert('Successfully inserted')</script>";
