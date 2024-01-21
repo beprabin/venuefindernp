@@ -2,7 +2,6 @@
   include('connection.php');
 ?>
 <!DOCTYPE html>
-<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -35,39 +34,38 @@
   </head>
 
   <!-- Navbar with Image and text -->
-  <nav class="navbar navbar-expand-lg navbar-light ">
-  <a class="navbar-brand" href="#">
-    <img
-        src="icon.svg"
-        width="50"
-        height="50"
-        class="d-inline-block"
-        alt=""
-        style="margin-right: 10px; /* Adjust the margin as needed */"
-    /></a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarText"
-      aria-controls="navbarText"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+      <img src="icon.svg" width="50" height="50" class="d-inline-block" alt="" style="margin-right: 10px;" />
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
+    <div class="collapse navbar-collapse justify-content-between" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#"
-            >Venue Finder <span class="sr-only">(current)</span></a
-          >
+          <a class="nav-link text-white" href="#">Venue Finder <span class="sr-only">(current)</span></a>
         </li>
       </ul>
+
+      <div class="d-flex">
+      <div class="collapse navbar-collapse mr-2" id="navbarText">
+      <button class="btn btn-outline-success text-white" data-bs-toggle="modal" data-bs-target="#signin" type="aboutus">About Us</button>
     </div>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#register" type="Register">Register</button>
+      
+      <div class="collapse navbar-collapse mr-2" id="navbarText">
+      <button class="btn btn-outline-success text-white" data-bs-toggle="modal" data-bs-target="#signin" type="Sign in">Sign in</button>
     </div>
+        
+        <div>
+          <button class="btn btn-outline-success text-white" data-bs-toggle="modal" data-bs-target="#register" type="Register">Register</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+
 
     <!-- Modal for registration -->
     <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -108,60 +106,111 @@
     </div>
 
 
-    <div class="collapse navbar-collapse p-0" id="navbarText">
-      <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signin" type="Sign in">Sign in</button>
-    </div>
+    
     <!-- Modal for signin -->
-    <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Register Here</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-          <form>
-        <label for="username">Email:</label>
-        <input type="text" id="email" name="email" required><br>
+    <style>
+    /* Custom styles for the Sign In modal */
+    .modal-content {
+      border-radius: 10px;
+    }
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br>
-        </form>
-          </div>
-          <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-          </div>
+    .modal-header {
+      background-color: #936837;
+      color: white;
+      border-bottom: 2px solid #936837;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+    }
+
+    .modal-body {
+      padding: 20px;
+    }
+
+    form label {
+      font-weight: bold;
+    }
+
+    form input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+    }
+
+    .modal-footer .btn-primary {
+      background-color: #28a745;
+      color: white;
+      border: none;
+    }
+
+    .modal-footer .btn-primary:hover {
+      background-color: #218838;
+    }
+  </style>
+
+  <!-- Add your other head content here -->
+  <title>Venue Finder</title>
+</head>
+
+<!-- Rest of your HTML body content -->
+<body>
+  <!-- Your existing HTML content -->
+
+  <!-- Modal for Sign In -->
+  <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Sign In</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <label for="username">Email:</label>
+            <input type="text" id="email" name="email" required><br>
+
+            <label for="password" >Password:</label>
+            <input type="password" id="password" name="password" required><br>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary text-white">Sign in</button>
         </div>
       </div>
     </div>
+  </div>
     
   </nav>
 
   <body>
     <div class="row">
       <div class="jumbotron col">
-        <h1 class="display-4">Venue Finder</h1>
-        <p class="lead">
-          Enter a city to find venues <br />
-          near you.
+        <p class="lead text-white">
+            Enter a city to find venues near you. <br />
+          
         </p>
         <hr class="my-4" />
         <!--submit form-->
         <form class="form-inline">
           <div class="form-group mx-sm-3 mb-2">
-            <label for="inputPassword2" class="sr-only">City</label>
+            <label for="inputPassword2" class="sr-only text-black">City</label>
             <input
               type="text"
               class="form-control"
               id="inputPassword2"
               placeholder="City"
-            />
+              style="width: 1500px;" 
+/>
+
           </div>
+          <br>
           <button
             onclick="hideCards()"
             type="submit"
             id="submit"
             class="btn btn-primary mb-2"
+            style="width: 150px; margin-left: auto; margin-right: auto; display: block;"
           >
             Search
           </button>
@@ -169,8 +218,8 @@
       </div>
 
       <!--placeholder for map-->
-      <div id="map"></div>
-      <div id="map2"></div>
+      <!-- <div id="map"></div>
+      <div id="map2"></div> -->
     </div>
 
     <div
@@ -191,14 +240,14 @@
           <li class="list-inline-item">
             <a
               href="https://www.facebook.com/"
-              class="btn btn-outline-primary"
+              class="btn btn-primary" 
               >Facebook</a
             >
           </li>
           <li class="list-inline-item">
             <a
               href="https://www.instagram.com/"
-              class="btn btn-outline-primary"
+              class="btn btn-primary"
               >Instagram</a
             >
           </li>
