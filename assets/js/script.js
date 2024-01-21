@@ -80,10 +80,13 @@ function updateVenue(d) {
 
     var mainDiv = "";
     var displayCards = document.getElementById("contentCards");
+
     var colDiv = document.createElement("div");
     colDiv.setAttribute("class", "col-4 justify-content-center");
+
     var newDiv = document.createElement("div");
     newDiv.setAttribute("class", "card");
+
     var newImg = document.createElement("img");
     newImg.setAttribute("class", "card-img-top");
     newImg.setAttribute("src", randomImage(images));
@@ -91,27 +94,32 @@ function updateVenue(d) {
     newDiv.appendChild(newImg);
     colDiv.appendChild(newDiv);
     cardDiv.appendChild(colDiv);
+
     var cardBody = document.createElement("div");
     cardBody.setAttribute("class", "card-body");
+
     var h5 = document.createElement("h5");
     h5.setAttribute("class", "card-title");
     h5.textContent = venueNames;
     cardBody.appendChild(h5);
     newDiv.appendChild(cardBody);
+
     var displayAddress = document.createElement("p");
     displayAddress.setAttribute("class", "card-text");
     displayAddress.textContent = venueAddress;
     cardBody.appendChild(displayAddress);
     newDiv.appendChild(cardBody);
+
     var displayZip = document.createElement("p");
     displayZip.setAttribute("class", "card-text");
     displayZip.textContent = cityAndZip;
     cardBody.appendChild(displayZip);
     newDiv.appendChild(cardBody);
+
     var goButton = document.createElement("a");
     goButton.setAttribute("class", "btn btn-primary");
-    goButton.setAttribute("href", venueUrl);
-    goButton.textContent = "Get Tickets";
+    // goButton.setAttribute("href", venueUrl);
+    goButton.textContent = "View More";
     cardBody.appendChild(goButton);
     newDiv.appendChild(cardBody);
   }

@@ -1,5 +1,17 @@
 <?php
   include('connection.php');
+
+  $select_venue="Select * from ven order by rand() LIMIT 0,6";
+            $result_query=mysqli_query($conn,$select_venue);
+            // $row=mysqli_fetch_assoc($result_query);
+            // echo $row['product_title'];
+            while($row=mysqli_fetch_assoc($result_query)){
+                $venue_id=$row['venue_id'];
+                $venue_name=$row['venue_name'];
+                $location=$row['location'];
+                $image=$row['image'];
+                $price=$row['price'];
+            }
 ?>
 <!DOCTYPE html>
   <head>
@@ -64,9 +76,6 @@
     </div>
   </nav>
 
-
-
-
     <!-- Modal for registration -->
     <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -76,32 +85,32 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form onsubmit="return validateForm()">
+            <form action="ownerdetails.php" method="POST" >
                 <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required /><br>
+                <input type="text" id="first_name" name="first_name" required /><br>
 
                 <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required /><br>
+                <input type="text" id="last_name" name="last_name" required /><br>
 
                 <label for="password">Password:</label>
                 <input type="password" id="password" name="password" required /><br>
 
                 <label for="repassword">Confirm password:</label>
-                <input type="password" id="repassword" name="repassword" required /><br>
+                <input type="password" id="confirm_password" name="confirm_password" required /><br>
 
                 <label for="phoneNumber">Phone Number:</label>
-                <input type="tel" id="phoneNumber" name="phoneNumber" required /><br>
+                <input type="tel" id="ph_number" name="ph_number" required /><br>
 
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required /><br>
 
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+                </div>
             </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary">Sign In</button>
-            <button type="button" class="btn btn-primary">Register</button>
-          </div>
-        </div>
+          
       </div>
     </div>
 
@@ -152,11 +161,6 @@
   <!-- Add your other head content here -->
   <title>Venue Finder</title>
 </head>
-
-<!-- Rest of your HTML body content -->
-<body>
-  <!-- Your existing HTML content -->
-
   <!-- Modal for Sign In -->
   <div class="modal fade" id="signin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -185,24 +189,21 @@
 
   <body>
     <div class="row">
-      <div class="jumbotron col">
-        <p class="lead text-white">
+        <p class="ml-1 text-white center">
             Enter a city to find venues near you. <br />
-          
         </p>
         <hr class="my-4" />
         <!--submit form-->
         <form class="form-inline">
           <div class="form-group mx-sm-3 mb-2">
-            <label for="inputPassword2" class="sr-only text-black">City</label>
+            <label for="inputPassword2" class="sr-only text-black">Enter name of City</label>
             <input
               type="text"
               class="form-control"
               id="inputPassword2"
               placeholder="City"
-              style="width: 1500px;" 
-/>
-
+              style="width: 1350px;" 
+            />
           </div>
           <br>
           <button
@@ -215,21 +216,38 @@
             Search
           </button>
         </form>
+        
       </div>
-
-      <!--placeholder for map-->
-      <!-- <div id="map"></div>
-      <div id="map2"></div> -->
+      <div class="row d-flex justify-content-around mb-2">
+            <a href="" class="badge badge-pill badge-primary">Kathmandu</a>
+            <a href="" class="badge badge-pill badge-secondary">Pokhara</a>
+            <a href="" class="badge badge-pill badge-success">Chitwan</a>
+            <a href="" class="badge badge-pill badge-danger">Biratnagar</a>
+            <a href="" class="badge badge-pill badge-warning">Jhapa</a>
+            <a href="" class="badge badge-pill badge-info">Bhaktapur</a>
+            <a href="" class="badge badge-pill badge-light">Lumbini</a>
+          </div>
+    
+    <div class="row d-flex justify-content-around">
+    <div class='col-md-4 mb-2'>
+                    <div class='card' >
+                    <img src='../images/$image' class='card-img-top' alt='...'>
+                    <div class='card-body'>
+                    <h5 class='card-title'>$venue_name</h5>
+                    <p class='card-text'>$price</p>
+                <a href='' class='btn btn-secondary'>View Details</a>
+                </div>
+                </div>
     </div>
-
-    <div
-      class="row d-flex justify-content-around"
-      id="hide-container"
-      style="display: none"
-    ></div>
-
+    <?php
+      getVenue();
+    ?>
+    </div>
+    
     <!-- Footer -->
-    <footer class="page-footer">
+    
+  </body>
+  <footer class="page-footer">
       <!-- Footer Elements -->
       <div class="container">
         <!-- Call to action -->
@@ -262,5 +280,4 @@
     ></script>
     <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.6.0/mapbox-gl.js"></script>
     <script src="./assets/js/script.js"></script>
-  </body>
 </html>
