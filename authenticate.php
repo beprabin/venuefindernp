@@ -1,46 +1,30 @@
 
 <?php
-session_start();
 
-// Check if the user is already logged in
-if (isset($_SESSION['owner_id'])) {
-    header("Location: dashboard.php");
+
+$user=$_POST['email'];
+$pass=$_POST['password'];
+include('connection.php');
+$sql="SELECT * FROM owner_details where email='".$user."' AND password='".$pass."'";
+$result=mysqli_query($conn,$sql);
+mysqli_close($conn);
+if(mysqli_num_rows($result)!=0){
+    session_start();
+    $_SESSION['owner_id']=$user;
+    header("Location: provider/dashboard.php");
     exit();
 }
-
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Include your database connection file
-    include 'connection.php';
-
-    // Get input values
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    // Validate inputs (you should add more validation and sanitation)
-    if (empty($email) || empty($password)) {
-        $error = "Both email and password are required.";
-    } else {
-        // Check user credentials
-        $query = "SELECT id, username, password FROM ownerdetails WHERE username = ?";
-        $stmt = $mysqli->prepare($query);
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $user = $result->fetch_assoc();
-
-        // Verify password
-        if ($user && password_verify($password, $user['password'])) {
-            // Set session variables
-            $_SESSION['owner_id'] = $user['id'];
-            $_SESSION['email'] = $user['email'];
-
-            // Redirect to the dashboard or any other page
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            $error = "Invalid username or password.";
-        }
+else{
+    echo "<html>
+    <head> <script type='text/javascript'>
+    function show_alert(){
+        alert('invalid username or password!');
     }
+    </script>
+    </head>";
+    echo "<body onload=show_alert()>";
+    include('hero.php');
+    echo "</body></html>";
+    exit();
 }
 ?>

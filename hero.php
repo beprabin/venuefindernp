@@ -1,6 +1,6 @@
 <?php
     include ('functions/common_functions.php');
-    include ('authenticate.php');
+    // include ('authenticate.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -142,7 +142,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="provider/dashboard.php" method="POST">
+                    <form action="authenticate.php" method="POST">
                         <label for="username">Email:</label>
                         <input type="text" id="email" name="email" required><br>
 
